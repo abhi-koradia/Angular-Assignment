@@ -1,0 +1,56 @@
+<div class="bg-primary h-[81.5vh] flex items-center justify-center p-6">
+  <div class="bg-secondary p-8 rounded-lg shadow-lg w-full max-w-md text-textPrimary">
+    <h1 class="text-2xl font-bold mb-6">Feedback Form</h1>
+
+    <!-- Display Feedback Message -->
+    <div *ngIf="feedbackMessage" class="mb-4 text-center">
+      <p [ngClass]="{'text-green-500': isSubmitted, 'text-red-500': !isSubmitted}" class="font-semibold">
+        {{ feedbackMessage }}
+      </p>
+    </div>
+
+    <!-- Feedback Form -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-bold">Name:</label>
+        <input
+          id="name"
+          formControlName="name"
+          class="w-full p-2 bg-primary border border-textSecondary rounded text-textPrimary focus:outline-none focus:ring-2 focus:ring-textSecondary"
+        />
+        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-red-500 text-sm mt-1">
+          Name is required.
+        </div>
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-bold">Email:</label>
+        <input
+          id="email"
+          formControlName="email"
+          class="w-full p-2 bg-primary border border-textSecondary rounded text-textPrimary focus:outline-none focus:ring-2 focus:ring-textSecondary"
+        />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-red-500 text-sm mt-1">
+          Please enter a valid email.
+        </div>
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-bold">Message:</label>
+        <textarea
+          id="message"
+          formControlName="message"
+          class="w-full p-2 bg-primary border border-textSecondary rounded text-textPrimary focus:outline-none focus:ring-2 focus:ring-textSecondary"
+        ></textarea>
+        <div *ngIf="form.get('message')?.invalid && form.get('message')?.touched" class="text-red-500 text-sm mt-1">
+          Message is required.
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="w-full bg-textPrimary text-primary py-2 rounded font-bold hover:bg-textSecondary transition"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

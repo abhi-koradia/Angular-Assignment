@@ -1,0 +1,22 @@
+<div class="bg-primary min-h-screen p-6 text-textPrimary">
+    <h1 class="text-3xl font-bold mb-6">API Data</h1>
+  
+    <!-- Check if data is available -->
+    <div *ngIf="data.length > 0; else noData">
+      <!-- Grid Layout -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let item of data" class="bg-secondary p-4 rounded-lg shadow-lg">
+          <h2 class="text-xl font-bold mb-2">{{ item.title }}</h2>
+          <p class="text-textSecondary"><strong>User ID:</strong> {{ item.userId }}</p>
+          <p class="text-textSecondary"><strong>ID:</strong> {{ item.id }}</p>
+          <p class="text-textSecondary"><strong>Body:</strong> {{ item.body }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Fallback if no data is available -->
+    <ng-template #noData>
+      <p class="text-textSecondary text-center">No data available.</p>
+    </ng-template>
+  </div>
+  
